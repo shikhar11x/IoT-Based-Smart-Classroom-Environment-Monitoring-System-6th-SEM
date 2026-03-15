@@ -59,7 +59,7 @@ The proposed system uses **IoT sensors connected to a microcontroller** to colle
 
 ## Project Supervisor
 
-**Dr. Sameer Farooq**
+**Mr. Gyan Chandra Vishwakarma**
 
 Department of Computer Science and Engineering
 School of Engineering and Technology
