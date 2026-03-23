@@ -61,7 +61,7 @@
 |--------|---------|
 | DHT22 VCC | 3.3V |
 | MQ135 VCC | 5V |
-| Buzzer VCC | 3.3V |
+| Buzzer VCC | 5V |
 | All GND | Common Ground |
 
 6️⃣ Circuit Diagram
