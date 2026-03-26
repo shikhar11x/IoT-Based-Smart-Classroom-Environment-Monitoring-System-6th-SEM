@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/K.R.%20Mangalam-UNIVERSITY-blue?style=for-the-badge&logo=google-scholar&logoColor=white&labelColor=0A3D91&color=E53935">
+</p>
+
 # IoT-Based Smart Classroom Environment Monitoring System
 
 > 📡 An IoT-based minor project for monitoring classroom environmental conditions with real-time cloud visualization.
