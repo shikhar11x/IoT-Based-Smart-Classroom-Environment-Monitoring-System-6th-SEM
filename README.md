@@ -16,10 +16,19 @@
 ![ML](https://img.shields.io/badge/ML-Linear%20Regression-purple?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-**A real-time IoT-based environment monitoring system for smart classrooms**  
-*Built with ESP32 · Vercel · Supabase · Linear Regression *
+<h1 align="center">🏫 Smart Classroom Environment Monitoring System</h1>
 
-[Live Dashboard](https://smartclassroomk.vercel.app) ·
+<p align="center">
+  <b>Real-Time IoT-Based Smart Classroom Monitoring Dashboard</b><br>
+  <i>Track temperature, humidity, and air quality with predictive insights using ESP32, Supabase, Vercel, and Linear Regression.</i>
+=</p>
+
+
+<p align="center">
+  <a href="https://smartclassroomk.vercel.app">
+    <img src="https://img.shields.io/badge/🚀%20Live%20Dashboard-Open%20Now-0A66C2?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Dashboard"/>
+  </a>
+</p>
 
 </div>
 
