@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // GET - last 50 alerts 
+  // **GET - last 50 alerts 
   if (req.method === 'GET') {
     const { data, error } = await supabase
       .from('alerts')
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     return res.status(200).json(data);
   }
 
-  // POST - save new alerts
+  // **POST - save new alerts
   if (req.method === 'POST') {
     const apiKey = req.headers['x-api-key'];
     if (apiKey !== process.env.ESP32_API_KEY) {
