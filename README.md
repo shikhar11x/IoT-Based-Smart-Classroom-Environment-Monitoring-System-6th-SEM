@@ -455,10 +455,10 @@ Board: ESP32 Dev Module
 ---
 
 ## 👨‍💻 Team BLAZESTACK
-SHIKHAR BAJPAI
-PRIYANSHU TOMAR
-KUMUD RATHI
-SHRIYA JAYASWAL
+SHIKHAR BAJPAI,
+PRIYANSHU TOMAR,
+KUMUD RATHI,
+SHRIYA JAYASWAL,
 
 **Project:** Smart Classroom Environment Monitoring System
 **Institution:** KR Mangalam University (KRMU)
