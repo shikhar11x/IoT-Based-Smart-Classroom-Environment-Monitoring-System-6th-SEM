@@ -9,7 +9,7 @@ var limits={temp:30,hum:75,air:500};
 var alertLog=[];
 var acOn=false, exhaustOn=false;
 
-// CLOCK
+// ****CLOCK*****
 setInterval(function(){
   document.getElementById('clock').textContent=new Date().toLocaleTimeString();
 },1000);
@@ -248,7 +248,7 @@ function renderChart(data){
   });
 }
 
-// LINEAR REGRESSION FORECAST..
+// >>>>>>>>>>>>LINEAR REGRESSION FORECAST<<<<<<<<<<<<<<<<<<<<
 function linReg(data,key){
   var n=data.length,sx=0,sy=0,sxy=0,sx2=0;
   data.forEach(function(d,i){ sx+=i;sy+=d[key];sxy+=i*d[key];sx2+=i*i; });
