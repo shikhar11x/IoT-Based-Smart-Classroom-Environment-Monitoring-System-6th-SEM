@@ -1,4 +1,4 @@
-//api/latest.js - Fetch latest sensor reading for dashboard
+//**api/latest.js - Fetch latest sensor reading for dashboard
 
 import { createClient} from '@supabase/supabase-js';
 
