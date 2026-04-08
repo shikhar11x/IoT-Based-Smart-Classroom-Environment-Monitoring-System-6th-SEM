@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Smart Classroom Environment Monitoring system</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-pulse"></div>
+    <img src="https://www.krmangalam.edu.in/_next/image?url=%2FKRMU-Logo-NAAC.webp&w=750&q=75" 
+  style="height:36px;width:auto;object-fit:contain;" 
+  alt="KRMU"/>
+    <h1>Smart Classroom Environment Monitoring system</h1>
+  </div>
+  <div class="header-meta">
+    <span class="meta-chip live">&#9679; LIVE</span>
+    <span class="meta-chip" id="last-update">--:--:--</span>
+    <span id="clock"></span>
+  </div>
+</header>
+
+<main>
+
+  <!--Gauges-->
+  <div class="sec-title">Live Sensor Readings</div>
+  <div class="gauges-row">
+    <div class="gauge-card gc-t">
+      <div class="gauge-top">
+        <span class="gauge-name">&#127777; Temperature</span>
+        <span class="g-status s-ok" id="st-temp">OK</span>
+      </div>
+      <div class="arc-wrap">
+        <svg viewBox="0 0 150 90">
+          <path d="M15,80 A55,55,0,0,1,135,80" fill="none" stroke="#1a2535" stroke-width="10" stroke-linecap="round"/>
+          <path d="M15,80 A55,55,0,0,1,135,80" fill="none" stroke="var(--t)" stroke-width="10"
+            stroke-linecap="round" stroke-dasharray="172" stroke-dashoffset="172" id="arc-temp"
+            style="transition:stroke-dashoffset .05s ease;filter:drop-shadow(0 0 4px var(--t));"/>
+        </svg>
+      </div>
+      <div class="g-val" id="vt" style="color:var(--t)">--<sup>°C</sup></div>
+      <div class="g-lim">Limit: <span id="lt">30</span>°C</div>
+    </div>
+    <div class="gauge-card gc-h">
+      <div class="gauge-top">
+        <span class="gauge-name">&#128167; Humidity</span>
+        <span class="g-status s-ok" id="st-hum">OK</span>
+      </div>
+      <div class="arc-wrap">
+        <svg viewBox="0 0 150 90">
+          <path d="M15,80 A55,55,0,0,1,135,80" fill="none" stroke="#1a2535" stroke-width="10" stroke-linecap="round"/>
+          <path d="M15,80 A55,55,0,0,1,135,80" fill="none" stroke="var(--h)" stroke-width="10"
+            stroke-linecap="round" stroke-dasharray="172" stroke-dashoffset="172" id="arc-hum"
+            style="transition:stroke-dashoffset .05s ease;filter:drop-shadow(0 0 4px var(--h));"/>
+        </svg>
+      </div>
+      <div class="g-val" id="vh" style="color:var(--h)">--<sup>%</sup></div>
+      <div class="g-lim">Limit: <span id="lh">75</span>%</div>
+    </div>
+    <div class="gauge-card gc-a">
+      <div class="gauge-top">
+        <span class="gauge-name">&#127787; Air Quality</span>
+        <span class="g-status s-ok" id="st-air">OK</span>
+      </div>
+      <div class="arc-wrap">
+        <svg viewBox="0 0 150 90">
+          <path d="M15,80 A55,55,0,0,1,135,80" fill="none" stroke="#1a2535" stroke-width="10" stroke-linecap="round"/>
+          <path d="M15,80 A55,55,0,0,1,135,80" fill="none" stroke="var(--a)" stroke-width="10"
+            stroke-linecap="round" stroke-dasharray="172" stroke-dashoffset="172" id="arc-air"
+            style="transition:stroke-dashoffset .05s ease;filter:drop-shadow(0 0 4px var(--a));"/>
+        </svg>
+      </div>
+      <div class="g-val" id="va" style="color:var(--a)">--<sup> idx</sup></div>
+      <div class="g-lim">Limit: <span id="la">500</span></div>
+    </div>
+  </div>
+
+  <!-- CONTROLS AC AND  EXHAUST -->
+  <div class="sec-title">System Controls</div>
+  <div class="controls-row">
+
+    <!-- FOR AC-->
+    <div class="ctrl-card">
+      <div class="ctrl-info">
+        <div class="ctrl-led" id="led-ac"></div>
+        <div>
+          <div class="ctrl-label">&#10052; AC Unit</div>
+          <div class="ctrl-sub" id="ac-status">Standby</div>
+        </div>
+      </div>
+      <div class="toggle-wrap">
+        <span class="toggle-label" id="ac-lbl">OFF</span>
+        <label class="toggle">
+          <input type="checkbox" id="ac-toggle" onchange="toggleAC(this)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- FOR EXHAUST -->
+    <div class="ctrl-card">
+      <div class="ctrl-info">
+        <div class="ctrl-led" id="led-ex"></div>
+        <div>
+          <div class="ctrl-label">&#127744; Exhaust Fan</div>
+          <div class="ctrl-sub" id="ex-status">Standby</div>
+        </div>
+      </div>
+      <div class="toggle-wrap">
+        <span class="toggle-label" id="ex-lbl">OFF</span>
+        <label class="toggle">
+          <input type="checkbox" id="ex-toggle" onchange="toggleExhaust(this)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HISTORY CHART-->
+  <div class="sec-title">Historical Data</div>
+  <div class="chart-card">
+    <div class="chart-toolbar">
+      <div class="tb-group" id="range-btns">
+        <button class="tbtn ar" onclick="setRange('live',this)">&#128308; Live</button>
+        <button class="tbtn" onclick="setRange('hour',this)">1H</button>
+        <button class="tbtn" onclick="setRange('day',this)">1D</button>
+        <button class="tbtn" onclick="setRange('week',this)">1W</button>
+        <button class="tbtn" onclick="setRange('month',this)">1M</button>
+        <button class="tbtn" onclick="setRange('month2',this)">2M</button>
+      </div>
+      <div class="tb-sep"></div>
+      <div class="tb-group">
+        <button class="tbtn mt" id="mb-t" onclick="toggleM('temp')">Temp</button>
+        <button class="tbtn mh" id="mb-h" onclick="toggleM('hum')">Humidity</button>
+        <button class="tbtn ma" id="mb-a" onclick="toggleM('air')">Air</button>
+      </div>
+    </div>
+    <div class="chart-box"><canvas id="mainChart"></canvas></div>
+  </div>
+
+  <!-- FOR FORECAST  -->
+  <div class="sec-title">AI Forecast — 7 Day Ahead</div>
+  <div class="forecast-card">
+    <div class="fc-head">
+      <div class="fc-label"><div class="fc-dot"></div>Linear Regression Forecast</div>
+      <button id="fc-btn" onclick="runForecast()">&#9889; Run Forecast</button>
+    </div>
+    <div class="fc-chart-box"><canvas id="fcChart"></canvas></div>
+    <div class="fc-insight" id="fc-insight">
+      <em>Click "Run Forecast" to generate 7-day predictions from sensor history...</em>
+    </div>
+  </div>
+
+  <!-- THRESHOLDS.. -->
+  <div class="sec-title">Alert Thresholds</div>
+  <div class="settings-card">
+    <div class="settings-grid">
+      <div class="si">
+        <label>&#127777; Temp Limit (°C)</label>
+        <input type="range" id="sl-t" min="20" max="45" value="30"
+          oninput="document.getElementById('sv-t').textContent=this.value+'°C'"/>
+        <div class="sv" id="sv-t">30°C</div>
+      </div>
+      <div class="si">
+        <label>&#128167; Humidity Limit (%)</label>
+        <input type="range" id="sl-h" min="30" max="95" value="75"
+          oninput="document.getElementById('sv-h').textContent=this.value+'%'"/>
+        <div class="sv" id="sv-h">75%</div>
+      </div>
+      <div class="si">
+        <label>&#127787; Air Quality Limit</label>
+        <input type="range" id="sl-a" min="100" max="1000" step="10" value="500"
+          oninput="document.getElementById('sv-a').textContent=this.value"/>
+        <div class="sv" id="sv-a">500</div>
+      </div>
+    </div>
+    <button class="save-btn" onclick="saveThresholds()">&#128190; Save Thresholds</button>
+  </div>
+
+  <!-- ALERT LOGS -->
+  <div class="sec-title">Alert Log</div>
+  <div class="alert-card">
+    <ul id="alert-list">
+      <li><span class="no-alert">No alerts yet — system nominal</span></li>
+    </ul>
+  </div>
+
+</main>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
