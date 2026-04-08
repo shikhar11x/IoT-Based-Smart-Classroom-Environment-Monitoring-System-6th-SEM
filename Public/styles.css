@@ -59,7 +59,7 @@ main{padding:1.5rem 2rem;max-width:1600px;margin:0 auto;}
 .g-val sup{font-size:.9rem;font-weight:300;color:var(--muted);}
 .g-lim{text-align:center;font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-top:.3rem;}
 
-/* CONTROLS ROW — AC AND Exhaust (2 columns now) */
+/******************* CONTROLS ROW — AC AND Exhaust (2 columns now) ***************/
 .controls-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-bottom:.5rem;}
 @media(max-width:800px){.controls-row{grid-template-columns:1fr;}}
 .ctrl-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;
