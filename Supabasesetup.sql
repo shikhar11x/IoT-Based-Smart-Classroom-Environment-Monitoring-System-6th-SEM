@@ -1,4 +1,4 @@
---  SUPABASE DATABASE SETUP
+--  ***SUPABASE DATABASE SETUP***
 
 -- 1. Sensor readings table
 CREATE TABLE sensor_readings (
