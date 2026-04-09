@@ -21,7 +21,7 @@
 <p align="center">
   <b>Real-Time IoT-Based Smart Classroom Monitoring Dashboard</b><br>
   <i>Track temperature, humidity, and air quality with predictive insights using ESP32, Supabase, Vercel, and Linear Regression.</i>
-=</p>
+</p>
 
 
 <p align="center">
