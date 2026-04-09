@@ -70,12 +70,12 @@ This project solves that problem by deploying a fully automated IoT system that:
 │  HARDWARE          │  BACKEND           │  DATABASE          │
 │  ESP32 DevKit      │  Vercel Serverless │  Supabase          │
 │  DHT22 Sensor      │  REST API          │  PostgreSQL        │
-│  MQ135 Sensor      │  Node.js 24.x      │  3 Tables          │
-│  Passive Buzzer    │  4 API Endpoints   │  Permanent Storage │
+│  MQ135 Sensor      │  4 API Endpoints   │  3 Tables          │
+│  Passive Buzzer    │                    │  Permanent Storage │
 ├─────────────────────────────────────────────────────────────┤
-│  FRONTEND          │  ML/AI             │  DEVOPS            │
+│  FRONTEND          │  ML/AI             │                    │
 │  HTML + CSS + JS   │  Linear Regression │  GitHub            │
-│  Chart.js          │  Trend Detection   │  Vercel CI/CD      │
+│  Chart.js          │  Trend Detection   │  Vercel            │
 │  Fetch API         │  Risk Detection    │  Auto Deploy       │
 └─────────────────────────────────────────────────────────────┘
 ```
