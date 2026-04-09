@@ -20,7 +20,7 @@
 - ESP32 Board Package  
 - Embedded C++  
 - WiFi Communication  
-- Blynk IoT Cloud  
+- Cloud Custom Dashboard  
 - Serial Monitor (Debugging)
 
 ---
