@@ -1,8 +1,5 @@
-// ============================================================
-//   SMART CLASSROOM — ESP32 FINAL CODE
 //   Data → Vercel Backend → Supabase
-//   Dashboard: Vercel pe deployed
-// ============================================================
+//   Dashboard: Deployed On Vercel
 
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -17,7 +14,7 @@ const char* ssid     = "S23";
 const char* password = "shikhar11";
 
 // ─── Vercel Backend URL ──────────────────────────────────────
-const char* VERCEL_URL  = "https://smartclassroomk.vercel.app"; // <-- apna URL daalo
+const char* VERCEL_URL  = "https://smartclassroomk.vercel.app"; 
 const char* ESP_API_KEY = "esp32-secret-key-123";
 
 // ─── Gmail SMTP ──────────────────────────────────────────────
@@ -34,17 +31,17 @@ const int   smtpPort   = 465;
 #define BUZZER_PIN 25
 #define BUZZER_RES 8
 
-// ─── Thresholds ──────────────────────────────────────────────
+// Thresholds 
 float TEMP_LIMIT = 30.0;
 float HUM_LIMIT  = 75.0;
 int   AIR_LIMIT  = 500;
 
-// ─── Current Values ──────────────────────────────────────────
+// Current Values
 float currentTemp = 0;
 float currentHum  = 0;
 int   currentAir  = 0;
 
-// ─── Alert Cooldown ──────────────────────────────────────────
+// Alert Cooldown 
 unsigned long lastTempAlert = 0;
 unsigned long lastHumAlert  = 0;
 unsigned long lastAirAlert  = 0;
@@ -56,9 +53,9 @@ const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset = 19800;
 const int   dstOffset = 0;
 
-// =============================================================
+
 //  BUZZER
-// =============================================================
+
 void buzzerTone(int freq, int dur) {
   ledcAttach(BUZZER_PIN, freq, BUZZER_RES);
   ledcWrite(BUZZER_PIN, 128);
@@ -70,9 +67,8 @@ void tempBuzz() { buzzerTone(2000, 600); }
 void humBuzz()  { buzzerTone(1500,200); delay(100); buzzerTone(1500,200); }
 void airBuzz()  { for(int i=0;i<3;i++){ buzzerTone(3000,150); delay(80); } }
 
-// =============================================================
+
 //  GMAIL SMTP
-// =============================================================
 void sendEmail(String subject, String body) {
   WiFiClientSecure client;
   client.setInsecure();
@@ -99,9 +95,8 @@ void sendEmail(String subject, String body) {
   Serial.println("Email sent!");
 }
 
-// =============================================================
+
 //  HTTPS POST helper — 308 fix
-// =============================================================
 int httpsPost(String endpoint, String jsonBody) {
   WiFiClientSecure *client = new WiFiClientSecure;
   client->setInsecure();
@@ -117,9 +112,8 @@ int httpsPost(String endpoint, String jsonBody) {
   return code;
 }
 
-// =============================================================
+
 //  VERCEL — Sensor data POST
-// =============================================================
 void postToVercel(float t, float h, int a) {
   if(WiFi.status() != WL_CONNECTED) return;
   StaticJsonDocument<128> doc;
@@ -128,9 +122,8 @@ void postToVercel(float t, float h, int a) {
   httpsPost("/api/data", body);
 }
 
-// =============================================================
+/
 //  VERCEL — Alert POST
-// =============================================================
 void postAlert(String type, float value, float lim) {
   if(WiFi.status() != WL_CONNECTED) return;
   StaticJsonDocument<128> doc;
@@ -139,9 +132,8 @@ void postAlert(String type, float value, float lim) {
   httpsPost("/api/alerts", body);
 }
 
-// =============================================================
+
 //  VERCEL — Thresholds fetch
-// =============================================================
 void fetchThresholds() {
   if(WiFi.status() != WL_CONNECTED) return;
   WiFiClientSecure *client = new WiFiClientSecure;
@@ -163,9 +155,8 @@ void fetchThresholds() {
   delete client;
 }
 
-// =============================================================
+
 //  SETUP
-// =============================================================
 void setup() {
   Serial.begin(115200);
   dht.begin();
@@ -191,9 +182,9 @@ void setup() {
   Serial.println("System ready!");
 }
 
-// =============================================================
+
 //  LOOP
-// =============================================================
+
 unsigned long lastRead      = 0;
 unsigned long lastPost      = 0;
 unsigned long lastThreshold = 0;
